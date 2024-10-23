@@ -83,7 +83,7 @@ bool Game::init()
 
 void Game::update(float dt)
 {
-
+	dragSprite();
 }
 
 void Game::render()
@@ -116,7 +116,7 @@ void Game::mouseButtonPressed(sf::Event event)
 
 void Game::mouseButtonReleased(sf::Event event)
 {
-	nullptr;
+	dragged = nullptr;
 
 }
 
@@ -147,15 +147,19 @@ void Game::newAnimal()
 
 }
 
-void Game::dragSprite(sf::Sprite* sprite)
+void Game::dragSprite()
 {
-	if (sprite != nullptr)
+	sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
+	sf::Vector2f mouse_positionf = static_cast<sf::Vector2f>(mouse_position);
+
+	if (dragged != nullptr)
 	{
-		sf::Vector2i mouse_position = sf::Mouse::getPosition(window);
-		sf::Vector2f mouse_positionf = static_cast<sf::Vector2f>(mouse_position);
+		
+		dragged->move(mouse_positionf.x - cursor.x, mouse_positionf.y - cursor.y);
 
 		//sf::Vector2f drag_position = mouse_positionf - drag_offset;
 		//sprite->setPosition(drag_position.x, drag_position.y);
 	}
+	cursor = mouse_positionf;
 
 }

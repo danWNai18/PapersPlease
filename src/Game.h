@@ -20,7 +20,7 @@ class Game
 
   void newAnimal();
 
-  void dragSprite(sf::Sprite* sprite);
+  void dragSprite();
 
   bool passport_accepted;
   bool passport_rejected;
@@ -40,6 +40,8 @@ class Game
   sf::Texture* passports = new sf::Texture[3];
 
   sf::Sprite* dragged = nullptr;
+
+  sf::Vector2<float> cursor;
 
 };
 
